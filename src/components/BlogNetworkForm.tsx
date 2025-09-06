@@ -4,9 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Bot, Globe, Link, Package, Loader2, Edit3, Handshake, Sparkles, Type, Quote } from "lucide-react";
+import { Bot, Globe, Link, Package, Loader2, Edit3, Handshake, Sparkles, Type, Quote, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ProductMenu from "./ProductMenu";
 import AffiliateOfferManager from "./AffiliateOfferManager";
@@ -31,6 +32,7 @@ const productOptions = [
 
 export default function BlogNetworkForm() {
   const [domain, setDomain] = useState("");
+  const [enableForSale, setEnableForSale] = useState(false);
   const [websiteContext, setWebsiteContext] = useState("");
   const [partnershipWith, setPartnershipWith] = useState("");
   const [contentStructure, setContentStructure] = useState("");
@@ -229,6 +231,23 @@ export default function BlogNetworkForm() {
                   className="h-12 text-base"
                   required
                 />
+              </div>
+
+              {/* Enable For Sale */}
+              <div className="space-y-3">
+                <Label className="text-base font-semibold flex items-center">
+                  <ShoppingCart className="h-4 w-4 mr-2 text-primary" />
+                  Enable For Sale
+                </Label>
+                <div className="flex items-center space-x-3">
+                  <Switch
+                    checked={enableForSale}
+                    onCheckedChange={setEnableForSale}
+                  />
+                  <span className="text-sm text-muted-foreground">
+                    {enableForSale ? "Enabled" : "Disabled"}
+                  </span>
+                </div>
               </div>
 
               {/* Website Context */}
